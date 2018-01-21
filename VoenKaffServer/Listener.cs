@@ -3,10 +3,15 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 using Newtonsoft.Json;
+using SerializablePicutre;
+using VoenKaffServer.Properties;
+using VoenKaffServer.Wrappers;
 
 namespace VoenKaffServer
 {
@@ -37,7 +42,7 @@ namespace VoenKaffServer
             var ipPoint = new IPEndPoint(IPAddress.Parse(_parameters.Get().IpAdress),_parameters.Get().Port);
 
             var socket = new Socket(AddressFamily.InterNetwork,SocketType.Stream,ProtocolType.Tcp);
-            var filenames = new List<string>();
+            var filenames = new List<ObjectInfo>();
             try
             {
                 socket.Bind(ipPoint);
@@ -69,24 +74,30 @@ namespace VoenKaffServer
                         }
                         case "Update":
                         {
+                            filenames.Clear();
                             var directoryInfo = new DirectoryInfo(_parameters.Get().TestPath);
                             foreach (var test in directoryInfo.GetFiles("*.test"))
                             {
-                                filenames.Add(test.Name);
+                                filenames.Add(new ObjectInfo{FileName = test.Name,Length = test.Length});
+                            }
+
+                            var pictures = new DirectoryInfo(_parameters.Get().TestPath + "\\picture");
+                            foreach (var picture in pictures.GetFiles("*.bin"))
+                            {
+                                filenames.Add(new ObjectInfo { FileName = "\\picture\\" + picture.Name, Length = picture.Length });
                             }
 
                             var json = JsonConvert.SerializeObject(filenames);
                             handler.Send(Encoding.Unicode.GetBytes(json));
                             break;
-                         }
+                        }
                         default:
                         {
                             int index;
+                            var file = "";
                             if (Int32.TryParse(response, out index))
                             {
-
-                                var file = File.ReadAllText(_parameters.Get().TestPath + "\\" + filenames[index]);
-                                handler.Send(Encoding.Unicode.GetBytes(file));
+                                handler.SendFile(_parameters.Get().TestPath + "\\" + filenames[index].FileName);
                             }
                             else
                             {
