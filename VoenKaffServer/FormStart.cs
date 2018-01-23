@@ -16,11 +16,17 @@ namespace VoenKaffServer
     {
         delegate void StringArgReturningVoidDelegate(string text);
         private FormSettings _settings;
-        public FormStart()
+
+        FormLogin _formLogin;
+
+        public FormStart(FormLogin formLogin)
         {
             InitializeComponent();
+            _formLogin = formLogin;
+
             var listener = new Listener(this);
             listener.Start();
+            
         }
 
         private void настройкиToolStripMenuItem_Click(object sender, EventArgs e)
@@ -56,6 +62,12 @@ namespace VoenKaffServer
         private void GridResult_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void выйтиИзАккаунтаToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Visible = false;
+            _formLogin.Visible = true;
         }
     }
 }

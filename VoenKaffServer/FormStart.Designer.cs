@@ -37,6 +37,7 @@
             this.StudentName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Mark = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Timestamp = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.выйтиИзАккаунтаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridResult)).BeginInit();
             this.SuspendLayout();
@@ -45,17 +46,19 @@
             // 
             this.menuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.настройкиToolStripMenuItem});
+            this.настройкиToolStripMenuItem,
+            this.выйтиИзАккаунтаToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(983, 28);
+            this.menuStrip.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
+            this.menuStrip.Size = new System.Drawing.Size(737, 24);
             this.menuStrip.TabIndex = 1;
             this.menuStrip.Text = " Меню";
             // 
             // настройкиToolStripMenuItem
             // 
             this.настройкиToolStripMenuItem.Name = "настройкиToolStripMenuItem";
-            this.настройкиToolStripMenuItem.Size = new System.Drawing.Size(96, 24);
+            this.настройкиToolStripMenuItem.Size = new System.Drawing.Size(79, 20);
             this.настройкиToolStripMenuItem.Text = "Настройки";
             this.настройкиToolStripMenuItem.Click += new System.EventHandler(this.настройкиToolStripMenuItem_Click);
             // 
@@ -72,10 +75,11 @@
             this.StudentName,
             this.Mark,
             this.Timestamp});
-            this.GridResult.Location = new System.Drawing.Point(88, 42);
+            this.GridResult.Location = new System.Drawing.Point(66, 34);
+            this.GridResult.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.GridResult.Name = "GridResult";
             this.GridResult.RowTemplate.Height = 24;
-            this.GridResult.Size = new System.Drawing.Size(827, 451);
+            this.GridResult.Size = new System.Drawing.Size(620, 366);
             this.GridResult.TabIndex = 2;
             this.GridResult.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridResult_CellContentClick);
             // 
@@ -132,14 +136,23 @@
             this.Timestamp.ReadOnly = true;
             this.Timestamp.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
+            // выйтиИзАккаунтаToolStripMenuItem
+            // 
+            this.выйтиИзАккаунтаToolStripMenuItem.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.выйтиИзАккаунтаToolStripMenuItem.Name = "выйтиИзАккаунтаToolStripMenuItem";
+            this.выйтиИзАккаунтаToolStripMenuItem.Size = new System.Drawing.Size(120, 20);
+            this.выйтиИзАккаунтаToolStripMenuItem.Text = "Выйти из аккаунта";
+            this.выйтиИзАккаунтаToolStripMenuItem.Click += new System.EventHandler(this.выйтиИзАккаунтаToolStripMenuItem_Click);
+            // 
             // FormStart
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(983, 526);
+            this.ClientSize = new System.Drawing.Size(737, 427);
             this.Controls.Add(this.GridResult);
             this.Controls.Add(this.menuStrip);
             this.MainMenuStrip = this.menuStrip;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "FormStart";
             this.Text = "Сервер тестирования";
             this.menuStrip.ResumeLayout(false);
@@ -160,6 +173,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn StudentName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Mark;
         private System.Windows.Forms.DataGridViewTextBoxColumn Timestamp;
+        private System.Windows.Forms.ToolStripMenuItem выйтиИзАккаунтаToolStripMenuItem;
     }
 }
 
