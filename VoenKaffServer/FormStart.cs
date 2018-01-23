@@ -40,7 +40,7 @@ namespace VoenKaffServer
 
         public void AddResult(string result)
         {
-            if (GridResult.InvokeRequired)
+            if (GridResultTest.InvokeRequired)
             {
                 StringArgReturningVoidDelegate d = AddResult;
                 Invoke(d, result);
@@ -48,14 +48,28 @@ namespace VoenKaffServer
             else
             {
                 var resultObj = JsonConvert.DeserializeObject<Result>(result);
-                GridResult.Rows.Add(
+                if (resultObj.ResultType == "Экзамен")
+                {
+                    GridResultTest.Rows.Add(
                     resultObj.TestName,
-                    resultObj.ResultType,
-                    resultObj.Platoon, 
-                    resultObj.StudentName, 
-                    resultObj.Mark, 
-                    resultObj.Timestamp             
-                );
+                    resultObj.Platoon,
+                    resultObj.StudentName,
+                    resultObj.Mark,
+                    resultObj.Timestamp
+                    );
+
+                }
+                
+                if (resultObj.ResultType == "Тренировка")
+                {
+                    GridResultStudy.Rows.Add(
+                    resultObj.TestName,
+                    resultObj.Platoon,
+                    resultObj.StudentName,
+                    resultObj.Mark,
+                    resultObj.Timestamp
+                    );
+                }
             }
         }
 
@@ -68,6 +82,31 @@ namespace VoenKaffServer
         {
             this.Visible = false;
             _formLogin.Visible = true;
+        }
+
+        private void тестированиеToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            WordSaver ws = new WordSaver();
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = "Word Documents (*.docx)|*.docx";
+            sfd.FileName = "Тестирование " + new DateTime().ToLongDateString() + ".docx";
+            if (sfd.ShowDialog() == DialogResult.OK) ws.Export_Data_To_Word(GridResultTest, sfd.FileName);
+            
+            //WordSaver.createDoc(this, 0);
+        }
+
+        private void обучениеToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            WordSaver ws = new WordSaver();
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = "Word Documents (*.docx)|*.docx";
+            sfd.FileName = "Обучение " + new DateTime().ToLongDateString() + ".docx";
+            if (sfd.ShowDialog() == DialogResult.OK) ws.Export_Data_To_Word(GridResultStudy, sfd.FileName);
+        }
+
+        private void тестированиеИОбучениеToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //WordSaver.createDoc(this, 2);
         }
     }
 }
