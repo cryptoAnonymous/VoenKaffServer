@@ -108,5 +108,10 @@ namespace VoenKaffServer
         {
             //WordSaver.createDoc(this, 2);
         }
+
+        private void FormStart_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Environment.Exit(0);
+        }
     }
 }

@@ -39,9 +39,10 @@
             // 
             this.buttonGoAdmin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonGoAdmin.Font = new System.Drawing.Font("Century Gothic", 11.25F);
-            this.buttonGoAdmin.Location = new System.Drawing.Point(308, 199);
+            this.buttonGoAdmin.Location = new System.Drawing.Point(411, 245);
+            this.buttonGoAdmin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonGoAdmin.Name = "buttonGoAdmin";
-            this.buttonGoAdmin.Size = new System.Drawing.Size(162, 45);
+            this.buttonGoAdmin.Size = new System.Drawing.Size(216, 55);
             this.buttonGoAdmin.TabIndex = 0;
             this.buttonGoAdmin.Text = "Войти";
             this.buttonGoAdmin.UseVisualStyleBackColor = true;
@@ -51,9 +52,10 @@
             // 
             this.labelUserName.AutoSize = true;
             this.labelUserName.Font = new System.Drawing.Font("Century Gothic", 11.25F);
-            this.labelUserName.Location = new System.Drawing.Point(136, 123);
+            this.labelUserName.Location = new System.Drawing.Point(181, 151);
+            this.labelUserName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelUserName.Name = "labelUserName";
-            this.labelUserName.Size = new System.Drawing.Size(142, 20);
+            this.labelUserName.Size = new System.Drawing.Size(175, 22);
             this.labelUserName.TabIndex = 1;
             this.labelUserName.Text = "Имя пользователя";
             // 
@@ -61,38 +63,43 @@
             // 
             this.labelUserPassword.AutoSize = true;
             this.labelUserPassword.Font = new System.Drawing.Font("Century Gothic", 11.25F);
-            this.labelUserPassword.Location = new System.Drawing.Point(216, 160);
+            this.labelUserPassword.Location = new System.Drawing.Point(288, 197);
+            this.labelUserPassword.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelUserPassword.Name = "labelUserPassword";
-            this.labelUserPassword.Size = new System.Drawing.Size(62, 20);
+            this.labelUserPassword.Size = new System.Drawing.Size(80, 22);
             this.labelUserPassword.TabIndex = 2;
             this.labelUserPassword.Text = "Пароль";
             // 
             // textBoxLogin
             // 
-            this.textBoxLogin.Location = new System.Drawing.Point(284, 123);
+            this.textBoxLogin.Location = new System.Drawing.Point(379, 151);
+            this.textBoxLogin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxLogin.Name = "textBoxLogin";
-            this.textBoxLogin.Size = new System.Drawing.Size(209, 20);
+            this.textBoxLogin.Size = new System.Drawing.Size(277, 22);
             this.textBoxLogin.TabIndex = 3;
             // 
             // textBoxPassword
             // 
-            this.textBoxPassword.Location = new System.Drawing.Point(284, 160);
+            this.textBoxPassword.Location = new System.Drawing.Point(379, 197);
+            this.textBoxPassword.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxPassword.Name = "textBoxPassword";
-            this.textBoxPassword.Size = new System.Drawing.Size(209, 20);
+            this.textBoxPassword.Size = new System.Drawing.Size(277, 22);
             this.textBoxPassword.TabIndex = 4;
             // 
             // FormLogin
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(737, 427);
+            this.ClientSize = new System.Drawing.Size(983, 526);
             this.Controls.Add(this.textBoxPassword);
             this.Controls.Add(this.textBoxLogin);
             this.Controls.Add(this.labelUserPassword);
             this.Controls.Add(this.labelUserName);
             this.Controls.Add(this.buttonGoAdmin);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "FormLogin";
             this.Text = "Вход";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormLogin_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 

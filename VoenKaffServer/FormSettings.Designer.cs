@@ -123,6 +123,7 @@
             this.Controls.Add(this.TestDirectory);
             this.Name = "FormSettings";
             this.Text = "Settings";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormSettings_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 

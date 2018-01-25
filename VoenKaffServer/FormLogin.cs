@@ -42,5 +42,10 @@ namespace VoenKaffServer
                 }
             }
         }
+
+        private void FormLogin_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Environment.Exit(0);
+        }
     }
 }

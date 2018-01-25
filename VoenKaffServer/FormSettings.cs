@@ -93,5 +93,10 @@ namespace VoenKaffServer
                 MessageBox.Show("Неверно задан ip-адрес!", "Неправильное значение ip-адреса", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
+        private void FormSettings_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            
+        }
     }
 }
