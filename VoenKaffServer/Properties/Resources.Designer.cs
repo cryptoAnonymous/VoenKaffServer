@@ -59,5 +59,14 @@ namespace VoenKaffServer.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на results.data.
+        /// </summary>
+        internal static string ResultsData {
+            get {
+                return ResourceManager.GetString("ResultsData", resourceCulture);
+            }
+        }
     }
 }

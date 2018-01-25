@@ -162,7 +162,6 @@
             this.Mark.FillWeight = 120F;
             this.Mark.HeaderText = "Оценка";
             this.Mark.Name = "Mark";
-            this.Mark.ReadOnly = true;
             this.Mark.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
             // Timestamp
@@ -179,7 +178,7 @@
             this.tabControlTest.Controls.Add(this.tabPageTest);
             this.tabControlTest.Controls.Add(this.tabPage2);
             this.tabControlTest.Location = new System.Drawing.Point(16, 33);
-            this.tabControlTest.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabControlTest.Margin = new System.Windows.Forms.Padding(4);
             this.tabControlTest.Name = "tabControlTest";
             this.tabControlTest.SelectedIndex = 0;
             this.tabControlTest.Size = new System.Drawing.Size(1203, 639);
@@ -189,9 +188,9 @@
             // 
             this.tabPageTest.Controls.Add(this.GridResultTest);
             this.tabPageTest.Location = new System.Drawing.Point(4, 25);
-            this.tabPageTest.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageTest.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageTest.Name = "tabPageTest";
-            this.tabPageTest.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageTest.Padding = new System.Windows.Forms.Padding(4);
             this.tabPageTest.Size = new System.Drawing.Size(1195, 610);
             this.tabPageTest.TabIndex = 0;
             this.tabPageTest.Text = "Тестирование";
@@ -201,9 +200,9 @@
             // 
             this.tabPage2.Controls.Add(this.GridResultStudy);
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(4);
             this.tabPage2.Size = new System.Drawing.Size(1195, 610);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Обучение";
@@ -306,11 +305,6 @@
         private System.Windows.Forms.TabPage tabPageTest;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.DataGridView GridResultStudy;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TestName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Platoon;
-        private System.Windows.Forms.DataGridViewTextBoxColumn StudentName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Mark;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Timestamp;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
@@ -319,6 +313,11 @@
         private System.Windows.Forms.ToolStripMenuItem скачатьДокументToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem тестированиеToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem обучениеToolStripMenuItem;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TestName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Platoon;
+        private System.Windows.Forms.DataGridViewTextBoxColumn StudentName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Mark;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Timestamp;
     }
 }
 
