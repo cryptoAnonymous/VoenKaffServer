@@ -51,6 +51,7 @@ namespace VoenKaffServer
                 if (resultObj.ResultType == "Экзамен")
                 {
                     GridResultTest.Rows.Add(
+                    resultObj.Course,
                     resultObj.TestName,
                     resultObj.Platoon,
                     resultObj.StudentName,
@@ -63,6 +64,7 @@ namespace VoenKaffServer
                 if (resultObj.ResultType == "Тренировка")
                 {
                     GridResultStudy.Rows.Add(
+                    resultObj.Course,
                     resultObj.TestName,
                     resultObj.Platoon,
                     resultObj.StudentName,
