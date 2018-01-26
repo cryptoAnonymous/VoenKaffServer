@@ -125,7 +125,7 @@
             this.Mark,
             this.Timestamp});
             this.GridResultTest.Location = new System.Drawing.Point(5, 5);
-            this.GridResultTest.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.GridResultTest.Margin = new System.Windows.Forms.Padding(2);
             this.GridResultTest.Name = "GridResultTest";
             this.GridResultTest.RowTemplate.Height = 24;
             this.GridResultTest.Size = new System.Drawing.Size(884, 483);
@@ -147,7 +147,7 @@
             this.tabPageTest.Controls.Add(this.GridResultTest);
             this.tabPageTest.Location = new System.Drawing.Point(4, 22);
             this.tabPageTest.Name = "tabPageTest";
-            this.tabPageTest.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPageTest.Padding = new System.Windows.Forms.Padding(3);
             this.tabPageTest.Size = new System.Drawing.Size(894, 493);
             this.tabPageTest.TabIndex = 0;
             this.tabPageTest.Text = "Тестирование";
@@ -158,7 +158,7 @@
             this.tabPage2.Controls.Add(this.GridResultStudy);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(894, 493);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Обучение";
@@ -178,7 +178,7 @@
             this.dataGridViewTextBoxColumn5,
             this.dataGridViewTextBoxColumn6});
             this.GridResultStudy.Location = new System.Drawing.Point(5, 5);
-            this.GridResultStudy.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.GridResultStudy.Margin = new System.Windows.Forms.Padding(2);
             this.GridResultStudy.Name = "GridResultStudy";
             this.GridResultStudy.RowTemplate.Height = 24;
             this.GridResultStudy.Size = new System.Drawing.Size(884, 483);
@@ -191,13 +191,12 @@
             // 
             // TestName
             // 
-            this.TestName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.TestName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.TestName.FillWeight = 120F;
             this.TestName.HeaderText = "Название Теста";
             this.TestName.Name = "TestName";
             this.TestName.ReadOnly = true;
             this.TestName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.TestName.Width = 169;
             // 
             // Platoon
             // 
@@ -223,6 +222,7 @@
             this.Mark.FillWeight = 120F;
             this.Mark.HeaderText = "Оценка";
             this.Mark.Name = "Mark";
+            this.Mark.ReadOnly = true;
             this.Mark.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
             // Timestamp
@@ -236,75 +236,17 @@
             // 
             // dataGridViewTextBoxColumn1
             // 
-            this.tabControlTest.Controls.Add(this.tabPageTest);
-            this.tabControlTest.Controls.Add(this.tabPage2);
-            this.tabControlTest.Location = new System.Drawing.Point(16, 33);
-            this.tabControlTest.Margin = new System.Windows.Forms.Padding(4);
-            this.tabControlTest.Name = "tabControlTest";
-            this.tabControlTest.SelectedIndex = 0;
-            this.tabControlTest.Size = new System.Drawing.Size(1203, 639);
-            this.tabControlTest.TabIndex = 3;
             this.dataGridViewTextBoxColumn1.HeaderText = "Предмет";
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
             // 
             // dataGridViewTextBoxColumn2
             // 
-            this.tabPageTest.Controls.Add(this.GridResultTest);
-            this.tabPageTest.Location = new System.Drawing.Point(4, 25);
-            this.tabPageTest.Margin = new System.Windows.Forms.Padding(4);
-            this.tabPageTest.Name = "tabPageTest";
-            this.tabPageTest.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPageTest.Size = new System.Drawing.Size(1195, 610);
-            this.tabPageTest.TabIndex = 0;
-            this.tabPageTest.Text = "Тестирование";
-            this.tabPageTest.UseVisualStyleBackColor = true;
-            // 
-            // tabPage2
-            this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.dataGridViewTextBoxColumn2.FillWeight = 120F;
             this.dataGridViewTextBoxColumn2.HeaderText = "Название Теста";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             this.dataGridViewTextBoxColumn2.ReadOnly = true;
             this.dataGridViewTextBoxColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewTextBoxColumn2.Width = 169;
-            // 
-            this.tabPage2.Controls.Add(this.GridResultStudy);
-            this.tabPage2.Location = new System.Drawing.Point(4, 25);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(4);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage2.Size = new System.Drawing.Size(1195, 610);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Обучение";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // GridResultStudy
-            // 
-            this.GridResultStudy.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.GridResultStudy.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.GridResultStudy.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn3,
-            this.dataGridViewTextBoxColumn4,
-            this.dataGridViewTextBoxColumn5,
-            this.dataGridViewTextBoxColumn6});
-            this.GridResultStudy.Location = new System.Drawing.Point(7, 6);
-            this.GridResultStudy.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.GridResultStudy.Name = "GridResultStudy";
-            this.GridResultStudy.RowTemplate.Height = 24;
-            this.GridResultStudy.Size = new System.Drawing.Size(1179, 594);
-            this.GridResultStudy.TabIndex = 3;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn1.FillWeight = 120F;
-            this.dataGridViewTextBoxColumn1.HeaderText = "Название Теста";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
             // dataGridViewTextBoxColumn3
             // 
@@ -350,10 +292,9 @@
             this.Controls.Add(this.tabControlTest);
             this.Controls.Add(this.menuStrip);
             this.MainMenuStrip = this.menuStrip;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FormStart";
             this.Text = "Сервер тестирования";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormStart_FormClosing);
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridResultTest)).EndInit();
@@ -390,14 +331,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
-        private System.Windows.Forms.ToolStripMenuItem скачатьДокументToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem тестированиеToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem обучениеToolStripMenuItem;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TestName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Platoon;
-        private System.Windows.Forms.DataGridViewTextBoxColumn StudentName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Mark;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Timestamp;
     }
 }
 
