@@ -23,11 +23,12 @@ namespace VoenKaffServer
                 Object[,] DataArray = new object[RowCount + 1, ColumnCount + 1];
 
                 //add rows
-                for (int c = 0; c < ColumnCount; c++)
+                int r = 0;
+                for (int c = 0; c <= ColumnCount - 1; c++)
                 {
-                    for (int r = 0; r < RowCount; r++)
+                    for (r = 0; r <= RowCount - 1; r++)
                     {
-                        DataArray[c, r] = DGV.Rows[r].Cells[c].Value;
+                        DataArray[r, c] = DGV.Rows[r].Cells[c].Value;
                     } //end row loop
                 } //end column loop
 
@@ -40,14 +41,12 @@ namespace VoenKaffServer
 
                 dynamic oRange = oDoc.Content.Application.Selection.Range;
                 string oTemp = "";
-                for (int r = 0; r < ColumnCount; r++)
+                for (r = 0; r <= RowCount - 1; r++)
                 {
-                    for (int c = 0; c < RowCount; c++)
+                    for (int c = 0; c <= ColumnCount - 1; c++)
                     {
-                        if (DataArray[c, r] != null)
-                        {
-                            oTemp += DataArray[c, r] + "\t";
-                        }
+                        oTemp = oTemp + DataArray[r, c] + "\t";
+
                     }
                 }
 
@@ -80,7 +79,7 @@ namespace VoenKaffServer
                 oDoc.Application.Selection.Tables[1].Rows[1].Range.Font.Size = 14;
 
                 //add header row manually
-                for (int c = 0; c <= ColumnCount; c++)
+                for (int c = 0; c <= ColumnCount - 1; c++)
                 {
                     oDoc.Application.Selection.Tables[1].Cell(1, c + 1).Range.Text = DGV.Columns[c].HeaderText;
                 }
@@ -102,6 +101,8 @@ namespace VoenKaffServer
 
                 //save the file
                 oDoc.SaveAs2(filename);
+
+                //NASSIM LOUCHANI
             }
         }
 
