@@ -33,7 +33,6 @@ namespace VoenKaffServer
                 } //end column loop
 
                 Word.Document oDoc = new Word.Document();
-                oDoc.Application.Visible = true;
 
                 //page orintation
                 oDoc.PageSetup.Orientation = Word.WdOrientation.wdOrientLandscape;
@@ -45,7 +44,8 @@ namespace VoenKaffServer
                 {
                     for (int c = 0; c <= ColumnCount - 1; c++)
                     {
-                        oTemp = oTemp + DataArray[r, c] + "\t";
+                        
+                        oTemp = oTemp + DataArray[r, c]?.ToString().Replace("\t","").Replace("\n","").Replace("\r","") + "\t";
 
                     }
                 }
