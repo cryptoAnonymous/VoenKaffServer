@@ -69,7 +69,7 @@
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
             this.menuStrip.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.menuStrip.Size = new System.Drawing.Size(926, 24);
+            this.menuStrip.Size = new System.Drawing.Size(930, 24);
             this.menuStrip.TabIndex = 1;
             this.menuStrip.Text = " Меню";
             // 
@@ -100,14 +100,14 @@
             // тестированиеToolStripMenuItem
             // 
             this.тестированиеToolStripMenuItem.Name = "тестированиеToolStripMenuItem";
-            this.тестированиеToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.тестированиеToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.тестированиеToolStripMenuItem.Text = "Тестирование";
             this.тестированиеToolStripMenuItem.Click += new System.EventHandler(this.тестированиеToolStripMenuItem_Click);
             // 
             // обучениеToolStripMenuItem
             // 
             this.обучениеToolStripMenuItem.Name = "обучениеToolStripMenuItem";
-            this.обучениеToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.обучениеToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.обучениеToolStripMenuItem.Text = "Обучение";
             this.обучениеToolStripMenuItem.Click += new System.EventHandler(this.обучениеToolStripMenuItem_Click);
             // 
@@ -125,7 +125,7 @@
             this.Mark,
             this.Timestamp});
             this.GridResultTest.Location = new System.Drawing.Point(5, 5);
-            this.GridResultTest.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.GridResultTest.Margin = new System.Windows.Forms.Padding(2);
             this.GridResultTest.Name = "GridResultTest";
             this.GridResultTest.RowTemplate.Height = 24;
             this.GridResultTest.Size = new System.Drawing.Size(884, 483);
@@ -197,7 +197,7 @@
             this.tabPageTest.Controls.Add(this.GridResultTest);
             this.tabPageTest.Location = new System.Drawing.Point(4, 22);
             this.tabPageTest.Name = "tabPageTest";
-            this.tabPageTest.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPageTest.Padding = new System.Windows.Forms.Padding(3);
             this.tabPageTest.Size = new System.Drawing.Size(894, 493);
             this.tabPageTest.TabIndex = 0;
             this.tabPageTest.Text = "Тестирование";
@@ -208,7 +208,7 @@
             this.tabPage2.Controls.Add(this.GridResultStudy);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(894, 493);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Обучение";
@@ -228,7 +228,7 @@
             this.dataGridViewTextBoxColumn5,
             this.dataGridViewTextBoxColumn6});
             this.GridResultStudy.Location = new System.Drawing.Point(5, 5);
-            this.GridResultStudy.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.GridResultStudy.Margin = new System.Windows.Forms.Padding(2);
             this.GridResultStudy.Name = "GridResultStudy";
             this.GridResultStudy.RowTemplate.Height = 24;
             this.GridResultStudy.Size = new System.Drawing.Size(884, 483);
@@ -288,11 +288,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(926, 558);
+            this.ClientSize = new System.Drawing.Size(930, 558);
             this.Controls.Add(this.tabControlTest);
             this.Controls.Add(this.menuStrip);
             this.MainMenuStrip = this.menuStrip;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FormStart";
             this.Text = "Сервер тестирования";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormStart_FormClosing);
