@@ -16,6 +16,7 @@ namespace VoenKaffServer
 
         public void Export_Data_To_Word(DataGridView DGV, string filename)
         {
+            object missing = System.Reflection.Missing.Value;
             if (DGV.Rows.Count != 0)
             {
                 int RowCount = DGV.Rows.Count;
@@ -101,7 +102,7 @@ namespace VoenKaffServer
 
                 //save the file
                 oDoc.SaveAs2(filename);
-
+                oDoc.Close(ref missing, ref missing, ref missing);
                 //NASSIM LOUCHANI
             }
         }

@@ -20,6 +20,7 @@ namespace VoenKaffServer
         private FormSettings _settings;
 
         FormLogin _formLogin;
+        public ResultsSaver resultsSaver;
 
         public FormStart(FormLogin formLogin)
         {
@@ -28,6 +29,10 @@ namespace VoenKaffServer
             ResultInitializer();
             var listener = new Listener(this);
             listener.Start();
+
+
+            resultsSaver = new ResultsSaver(GridResultTest, GridResultStudy);
+
 
         }
 
@@ -66,7 +71,7 @@ namespace VoenKaffServer
                     resultObj.Mark,
                     resultObj.Timestamp
                     );
-
+                    resultsSaver.testsSaved = false;
                 }
 
                 if (resultObj.ResultType == "Тренировка")
@@ -79,6 +84,7 @@ namespace VoenKaffServer
                     resultObj.Mark,
                     resultObj.Timestamp
                     );
+                    resultsSaver.studySaved = false;
                 }
             }
         }
@@ -173,22 +179,14 @@ namespace VoenKaffServer
 
         private void тестированиеToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            WordSaver ws = new WordSaver();
-            SaveFileDialog sfd = new SaveFileDialog();
-            sfd.Filter = "Word Documents (*.docx)|*.docx";
-            sfd.FileName = "Тестирование " + DateTime.Today.ToLongDateString() + ".docx";
-            if (sfd.ShowDialog() == DialogResult.OK) ws.Export_Data_To_Word(GridResultTest, sfd.FileName);
-
-            //WordSaver.createDoc(this, 0);
+            resultsSaver.saveTests();
+            resultsSaver.testsSaved = true;
         }
 
         private void обучениеToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            WordSaver ws = new WordSaver();
-            SaveFileDialog sfd = new SaveFileDialog();
-            sfd.Filter = "Word Documents (*.docx)|*.docx";
-            sfd.FileName = "Обучение " + DateTime.Today.ToLongDateString() + ".docx";
-            if (sfd.ShowDialog() == DialogResult.OK) ws.Export_Data_To_Word(GridResultStudy, sfd.FileName);
+            resultsSaver.saveStudy();
+            resultsSaver.studySaved = true;
         }
 
         private void тестированиеИОбучениеToolStripMenuItem_Click(object sender, EventArgs e)
@@ -201,6 +199,24 @@ namespace VoenKaffServer
             try
             {
                 UpdateResults();
+                if (resultsSaver.testsSaved == false)
+                {
+                    var messageBox = MessageBox.Show("Есть несохраненные результаты ТЕСТИРОВАНИЯ! Сохранить их перед закрытием?", "Сохранение", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    if (messageBox == DialogResult.Yes)
+                    {
+                        resultsSaver.saveTests();
+                        resultsSaver.testsSaved = true;
+                    }
+                }
+                if (resultsSaver.studySaved == false)
+                {
+                    var messageBox = MessageBox.Show("Есть несохраненные результаты ОБУЧЕНИЯ! Сохранить их перед закрытием?", "Сохранение", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    if (messageBox == DialogResult.Yes)
+                    {
+                        resultsSaver.saveStudy();
+                        resultsSaver.studySaved = true;
+                    }
+                }
             }
             catch (Exception exception)
             {

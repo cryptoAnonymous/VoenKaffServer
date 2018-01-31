@@ -45,7 +45,27 @@ namespace VoenKaffServer
 
         private void FormLogin_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Environment.Exit(0);
+
+
+
+            if (_formStart.resultsSaver.testsSaved == false || _formStart.resultsSaver.testsSaved == false)
+            {
+                var messageBox = MessageBox.Show("Закрыть без сохранения результатов? \n(Чтобы сохранить результаты, войдите как преподаватель)", "Есть несохраненные результаты!", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                if (messageBox == DialogResult.OK)
+                {
+                    Environment.Exit(0);
+                }
+                if (messageBox == DialogResult.Cancel)
+                {
+                    e.Cancel = true;
+                }
+
+            }
+            else
+            {
+                Environment.Exit(0);
+            }
+            
         }
     }
 }
