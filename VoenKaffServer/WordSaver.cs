@@ -37,14 +37,9 @@ namespace VoenKaffServer
                     } //end column loop
 
 
-
-
-
                     Word.Document oDoc = new Word.Document();
-
                     //page orintation
                     oDoc.PageSetup.Orientation = Word.WdOrientation.wdOrientLandscape;
-
 
                     dynamic oRange = oDoc.Content.Application.Selection.Range;
                     string oTemp = "";
@@ -57,7 +52,6 @@ namespace VoenKaffServer
 
                         }
                     }
-
                     //table format
                     oRange.Text = oTemp;
 
@@ -108,11 +102,10 @@ namespace VoenKaffServer
                     }
 
                     //save the file
-                    oDoc.SaveAs2(filename);
+                    oDoc.SaveAs2000(filename);
+                    oDoc.Application.Documents[filename].Save();
                     oDoc.Close(ref missing, ref missing, ref missing);
                     //NASSIM LOUCHANI
-
-
                 }
             }
             catch (Exception e)

@@ -22,18 +22,18 @@ namespace VoenKaffServer
         {
             _testsTable = testsTable;
             _studyTable = studyTable;
-            sfd.Filter = "Word Documents (*.docx)|*.docx";
+            sfd.Filter = "Word Documents (*.doc)|*.doc";
         }
 
         public void saveTests()
         {
             
-            sfd.FileName = "Тестирование " + DateTime.Today.ToLongDateString() + ".docx";
+            sfd.FileName = "Тестирование " + DateTime.Today.ToLongDateString() + ".doc";
             if (sfd.ShowDialog() == DialogResult.OK) ws.Export_Data_To_Word(_testsTable, sfd.FileName);
         }
         public void saveStudy()
         {
-            sfd.FileName = "Обучение " + DateTime.Today.ToLongDateString() + ".docx";
+            sfd.FileName = "Обучение " + DateTime.Today.ToLongDateString() + ".doc";
             if (sfd.ShowDialog() == DialogResult.OK) ws.Export_Data_To_Word(_studyTable, sfd.FileName);
         }
 
