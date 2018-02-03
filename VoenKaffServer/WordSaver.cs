@@ -12,7 +12,7 @@ namespace VoenKaffServer
 {
     class WordSaver
     {
-
+        
 
         public void Export_Data_To_Word(DataGridView DGV, string filename)
         {
@@ -90,6 +90,8 @@ namespace VoenKaffServer
                     //oDoc.Application.Selection.Tables[1].set_Style("Grid Table 4 - Accent 5");
                     oDoc.Application.Selection.Tables[1].Rows[1].Select();
                     oDoc.Application.Selection.Cells.VerticalAlignment = Word.WdCellVerticalAlignment.wdCellAlignVerticalCenter;
+                    oDoc.Application.Selection.Tables[1].Borders.OutsideLineStyle = Word.WdLineStyle.wdLineStyleSingle;
+                    oDoc.Application.Selection.Tables[1].Borders.InsideLineStyle = Word.WdLineStyle.wdLineStyleSingle;
 
                     //header text
                     foreach (Word.Section section in oDoc.Application.ActiveDocument.Sections)

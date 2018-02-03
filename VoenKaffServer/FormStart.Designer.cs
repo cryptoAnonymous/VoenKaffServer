@@ -35,16 +35,16 @@
             this.тестированиеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.обучениеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.GridResultTest = new System.Windows.Forms.DataGridView();
+            this.tabControlTest = new System.Windows.Forms.TabControl();
+            this.tabPageTest = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.GridResultStudy = new System.Windows.Forms.DataGridView();
             this.Course = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TestName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Platoon = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.StudentName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Mark = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Timestamp = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tabControlTest = new System.Windows.Forms.TabControl();
-            this.tabPageTest = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.GridResultStudy = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -132,56 +132,6 @@
             this.GridResultTest.TabIndex = 2;
             this.GridResultTest.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridResult_CellContentClick);
             // 
-            // Course
-            // 
-            this.Course.HeaderText = "Предмет";
-            this.Course.Name = "Course";
-            // 
-            // TestName
-            // 
-            this.TestName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.TestName.FillWeight = 120F;
-            this.TestName.HeaderText = "Название Теста";
-            this.TestName.Name = "TestName";
-            this.TestName.ReadOnly = true;
-            this.TestName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // Platoon
-            // 
-            this.Platoon.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Platoon.FillWeight = 120F;
-            this.Platoon.HeaderText = "Взвод";
-            this.Platoon.Name = "Platoon";
-            this.Platoon.ReadOnly = true;
-            this.Platoon.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // StudentName
-            // 
-            this.StudentName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.StudentName.FillWeight = 120F;
-            this.StudentName.HeaderText = "ФИО";
-            this.StudentName.Name = "StudentName";
-            this.StudentName.ReadOnly = true;
-            this.StudentName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // Mark
-            // 
-            this.Mark.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Mark.FillWeight = 120F;
-            this.Mark.HeaderText = "Оценка";
-            this.Mark.Name = "Mark";
-            this.Mark.ReadOnly = true;
-            this.Mark.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // Timestamp
-            // 
-            this.Timestamp.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Timestamp.FillWeight = 120F;
-            this.Timestamp.HeaderText = "Дата";
-            this.Timestamp.Name = "Timestamp";
-            this.Timestamp.ReadOnly = true;
-            this.Timestamp.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
             // tabControlTest
             // 
             this.tabControlTest.Controls.Add(this.tabPageTest);
@@ -234,10 +184,68 @@
             this.GridResultStudy.Size = new System.Drawing.Size(884, 483);
             this.GridResultStudy.TabIndex = 3;
             // 
+            // Course
+            // 
+            this.Course.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Course.FillWeight = 120F;
+            this.Course.HeaderText = "Предмет";
+            this.Course.Name = "Course";
+            this.Course.ReadOnly = true;
+            this.Course.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // TestName
+            // 
+            this.TestName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.TestName.FillWeight = 120F;
+            this.TestName.HeaderText = "Название Теста";
+            this.TestName.Name = "TestName";
+            this.TestName.ReadOnly = true;
+            this.TestName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // Platoon
+            // 
+            this.Platoon.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Platoon.FillWeight = 120F;
+            this.Platoon.HeaderText = "Взвод";
+            this.Platoon.Name = "Platoon";
+            this.Platoon.ReadOnly = true;
+            this.Platoon.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // StudentName
+            // 
+            this.StudentName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.StudentName.FillWeight = 120F;
+            this.StudentName.HeaderText = "ФИО";
+            this.StudentName.Name = "StudentName";
+            this.StudentName.ReadOnly = true;
+            this.StudentName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // Mark
+            // 
+            this.Mark.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Mark.FillWeight = 120F;
+            this.Mark.HeaderText = "Оценка";
+            this.Mark.Name = "Mark";
+            this.Mark.ReadOnly = true;
+            this.Mark.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // Timestamp
+            // 
+            this.Timestamp.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Timestamp.FillWeight = 120F;
+            this.Timestamp.HeaderText = "Дата";
+            this.Timestamp.Name = "Timestamp";
+            this.Timestamp.ReadOnly = true;
+            this.Timestamp.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
             // dataGridViewTextBoxColumn1
             // 
+            this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn1.FillWeight = 120F;
             this.dataGridViewTextBoxColumn1.HeaderText = "Предмет";
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
             // dataGridViewTextBoxColumn2
             // 

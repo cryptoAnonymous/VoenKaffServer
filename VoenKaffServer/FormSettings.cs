@@ -22,6 +22,7 @@ namespace VoenKaffServer
             Port.Text = _parameters.Get().Port.ToString();
             TestDirectory.Text = _parameters.Get().TestPath;
             IpAddress.Text = _parameters.Get().IpAdress;
+            resultsDirectory.Text = _parameters.Get().ResultsPath;
         }
 
         private void close_Click(object sender, EventArgs e)
@@ -80,6 +81,42 @@ namespace VoenKaffServer
             }
         }
 
+        private void resultsDirectory_Leave(object sender, EventArgs e)
+        {
+            var resultsDirectoryValue = ((Control)sender).Text;
+            if (Directory.Exists(resultsDirectoryValue))
+            {
+                _parameters.SetResultsPath(resultsDirectoryValue);
+            }
+            else
+            {
+                var result = MessageBox.Show("Такой директории не существует, создать?", "Директория не существует", MessageBoxButtons.YesNo);
+
+                if (result == DialogResult.Yes)
+                {
+                    try
+                    {
+                        //Главная папка
+                        Directory.CreateDirectory(resultsDirectoryValue);
+                        
+                        if (!Directory.Exists(resultsDirectoryValue))
+                        {
+                            throw new Exception();
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("Не удалось создать директорию", "Не удалось создать директорию", MessageBoxButtons.OK);
+                        ((Control)sender).Text = "";
+                    }
+                }
+                else
+                {
+                    ((Control)sender).Text = "";
+                }
+            }
+        }
+
         private void IpAddress_Leave(object sender, EventArgs e)
         {
             Regex ip = new Regex(@"^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$");
@@ -98,5 +135,7 @@ namespace VoenKaffServer
         {
             
         }
+
+        
     }
 }

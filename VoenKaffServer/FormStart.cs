@@ -179,13 +179,15 @@ namespace VoenKaffServer
 
         private void тестированиеToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            resultsSaver.saveTests();
+            resultsSaver._typeRes = "Тестирование";
+            resultsSaver.saveResults(resultsSaver._testsTable);
             resultsSaver.testsSaved = true;
         }
 
         private void обучениеToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            resultsSaver.saveStudy();
+            resultsSaver._typeRes = "Обучение";
+            resultsSaver.saveResults(resultsSaver._studyTable);
             resultsSaver.studySaved = true;
         }
 
@@ -201,19 +203,21 @@ namespace VoenKaffServer
                 UpdateResults();
                 if (resultsSaver.testsSaved == false)
                 {
-                    var messageBox = MessageBox.Show("Есть несохраненные результаты ТЕСТИРОВАНИЯ! Сохранить их перед закрытием?", "Сохранение", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                    if (messageBox == DialogResult.Yes)
+                    //var messageBox = MessageBox.Show("Есть несохраненные результаты ТЕСТИРОВАНИЯ! Сохранить их перед закрытием?", "Сохранение", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    //if (messageBox == DialogResult.Yes)
                     {
-                        resultsSaver.saveTests();
+                        resultsSaver._typeRes = "Тестирование";
+                        resultsSaver.saveResults(resultsSaver._testsTable);
                         resultsSaver.testsSaved = true;
                     }
                 }
                 if (resultsSaver.studySaved == false)
                 {
-                    var messageBox = MessageBox.Show("Есть несохраненные результаты ОБУЧЕНИЯ! Сохранить их перед закрытием?", "Сохранение", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                    if (messageBox == DialogResult.Yes)
+                    //var messageBox = MessageBox.Show("Есть несохраненные результаты ОБУЧЕНИЯ! Сохранить их перед закрытием?", "Сохранение", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    //if (messageBox == DialogResult.Yes)
                     {
-                        resultsSaver.saveStudy();
+                        resultsSaver._typeRes = "Обучение";
+                        resultsSaver.saveResults(resultsSaver._studyTable);
                         resultsSaver.studySaved = true;
                     }
                 }

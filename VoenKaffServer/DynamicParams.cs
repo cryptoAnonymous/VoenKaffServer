@@ -22,6 +22,7 @@ namespace VoenKaffServer
             public string TestPath { get; set; } = "";
             public int Port { get; set; } = 0;
             public string IpAdress { get; set; } = "127.0.0.1";
+            public string ResultsPath { get; set; } = "";
         }
 
 
@@ -52,6 +53,16 @@ namespace VoenKaffServer
         {
             var iniFile = ReadFile();
             iniFile.TestPath = value;
+            using (var stream = new FileStream(Path, FileMode.Create))
+            {
+                XmlSerializer serializer = new XmlSerializer(typeof(Settings));
+                serializer.Serialize(stream, iniFile);
+            }
+        }
+        public void SetResultsPath(string value)
+        {
+            var iniFile = ReadFile();
+            iniFile.ResultsPath = value;
             using (var stream = new FileStream(Path, FileMode.Create))
             {
                 XmlSerializer serializer = new XmlSerializer(typeof(Settings));
