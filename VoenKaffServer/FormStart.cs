@@ -33,7 +33,8 @@ namespace VoenKaffServer
 
             resultsSaver = new ResultsSaver(GridResultTest, GridResultStudy);
 
-
+            this.MinimumSize = this.Size;
+            this.MaximumSize = this.Size;
         }
 
         private void Initialize()

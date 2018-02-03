@@ -17,6 +17,10 @@ namespace VoenKaffServer
         {
             InitializeComponent();
             _formStart = new FormStart(this);
+
+
+            this.MinimumSize = this.Size;
+            this.MaximumSize = this.Size;
         }
 
         private void buttonGoAdmin_Click(object sender, EventArgs e)

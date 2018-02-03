@@ -23,6 +23,10 @@ namespace VoenKaffServer
             TestDirectory.Text = _parameters.Get().TestPath;
             IpAddress.Text = _parameters.Get().IpAdress;
             resultsDirectory.Text = _parameters.Get().ResultsPath;
+
+
+            this.MinimumSize = this.Size;
+            this.MaximumSize = this.Size;
         }
 
         private void close_Click(object sender, EventArgs e)
