@@ -38,6 +38,8 @@ namespace VoenKaffServer
 
         public void saveResults(DataGridView dataGV)
         {
+            
+
             courseAndRows = new Dictionary<string, List<DataGridViewRow>> { };
             listColumns = new List<DataGridViewColumn> { };
             docNameAndRows = new Dictionary<string, List<DataGridViewRow>> { };
@@ -111,7 +113,7 @@ namespace VoenKaffServer
                         tempTable.Rows.Add(rowForInsert);
                     }
 
-                    ws.Export_Data_To_Word(tempTable, courseDir + @"\" + keyValueDocAndRows.Key + ".docx");
+                    ws.Export_Data_To_Word(tempTable, courseDir + @"\" + keyValueDocAndRows.Key + ".doc");
                         
 
                 }

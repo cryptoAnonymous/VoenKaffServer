@@ -178,57 +178,79 @@ namespace VoenKaffServer
             _formLogin.Visible = true;
         }
 
-        private void тестированиеToolStripMenuItem_Click(object sender, EventArgs e)
+        private async void тестированиеToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Visible = false;
+
+            FormPicWhileDocsAreSaving formLoading = new FormPicWhileDocsAreSaving();
+            formLoading.Visible = true;
+            if (await Task.Run(() => goSaveTests()))
+            {
+                formLoading.Visible = false;
+            }
+
+            this.Visible = true;
+        }
+
+        private async void обучениеToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Visible = false;
+
+            FormPicWhileDocsAreSaving formLoading = new FormPicWhileDocsAreSaving();
+            formLoading.Visible = true;
+            if (await Task.Run(() => goSaveStudy()))
+            {
+                formLoading.Visible = false;
+            }
+
+            this.Visible = true;
+        }
+
+        public Boolean goSaveTests()
         {
             resultsSaver._typeRes = "Тестирование";
             resultsSaver.saveResults(resultsSaver._testsTable);
             resultsSaver.testsSaved = true;
+            return true;
         }
-
-        private void обучениеToolStripMenuItem_Click(object sender, EventArgs e)
+        public Boolean goSaveStudy()
         {
             resultsSaver._typeRes = "Обучение";
             resultsSaver.saveResults(resultsSaver._studyTable);
             resultsSaver.studySaved = true;
+            return true;
         }
 
-        private void тестированиеИОбучениеToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //WordSaver.createDoc(this, 2);
-        }
+        
 
-        private void FormStart_FormClosing(object sender, FormClosingEventArgs e)
+        
+
+        private  void FormStart_FormClosing(object sender, FormClosingEventArgs e)
         {
             try
             {
                 UpdateResults();
-                if (resultsSaver.testsSaved == false)
-                {
-                    //var messageBox = MessageBox.Show("Есть несохраненные результаты ТЕСТИРОВАНИЯ! Сохранить их перед закрытием?", "Сохранение", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                    //if (messageBox == DialogResult.Yes)
-                    {
-                        resultsSaver._typeRes = "Тестирование";
-                        resultsSaver.saveResults(resultsSaver._testsTable);
-                        resultsSaver.testsSaved = true;
-                    }
-                }
-                if (resultsSaver.studySaved == false)
-                {
-                    //var messageBox = MessageBox.Show("Есть несохраненные результаты ОБУЧЕНИЯ! Сохранить их перед закрытием?", "Сохранение", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                    //if (messageBox == DialogResult.Yes)
-                    {
-                        resultsSaver._typeRes = "Обучение";
-                        resultsSaver.saveResults(resultsSaver._studyTable);
-                        resultsSaver.studySaved = true;
-                    }
-                }
+                saveResByClosing();
             }
             catch (Exception exception)
             {
                 MessageBox.Show(exception.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            Environment.Exit(0);
+            
+        }
+
+        public async void saveResByClosing()
+        {
+            FormPicWhileDocsAreSaving formLoading = new FormPicWhileDocsAreSaving();
+            
+            formLoading.Visible = true;
+            if (await Task.Run(() => goSaveStudy()) && await Task.Run(() => goSaveTests()))
+            {
+                formLoading.Visible = false;
+                Environment.Exit(0);
+            }
+            
         }
     }
 }
