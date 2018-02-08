@@ -105,6 +105,7 @@
     <Compile Include="FormSettings.Designer.cs">
       <DependentUpon>FormSettings.cs</DependentUpon>
     </Compile>
+    <Compile Include="ResultsData.cs" />
     <Compile Include="ResultsSaver.cs" />
     <Compile Include="WordSaver.cs" />
     <Compile Include="Wrappers\ObjectInfo.cs" />

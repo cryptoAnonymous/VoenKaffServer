@@ -12,8 +12,16 @@ namespace VoenKaffServer
 {
     class WordSaver
     {
-        
+        object wMissing = Type.Missing;
+        object wTrue = true;
+        object wFalse = false;
+        Word.Document oDoc;
 
+        private Word.Application wordapp;
+
+        Word.Table table;
+
+        int firstEmptyRow = 0;
         public void Export_Data_To_Word(DataGridView DGV, string filename)
         {
             try
@@ -36,8 +44,29 @@ namespace VoenKaffServer
                         } //end row loop
                     } //end column loop
 
+                    //if (File.Exists(filename))
+                    //{
+                    //    wordapp = new Word.Application();
+                    //    oDoc = wordapp.Documents.Open2000(filename);
+                    //    table = oDoc.Tables[1];
+                    //    for (int i = 0; i < table.Rows.Count; i++)
+                    //    {
+                    //        MessageBox.Show(filename + table.Cell(0, i).Range.Text);
+                    //        if (table.Cell(0,i).Range.Text == "")
+                    //        {
+                                
+                    //            firstEmptyRow = i;
+                    //        }
+                    //    }
+                            
+                    //}
+                    //else
+                    //{
+                    //    oDoc = new Word.Document();
+                    //}
 
-                    Word.Document oDoc = new Word.Document();
+                    oDoc = new Word.Document();
+
                     //page orintation
                     oDoc.PageSetup.Orientation = Word.WdOrientation.wdOrientLandscape;
 
@@ -86,12 +115,37 @@ namespace VoenKaffServer
                         oDoc.Application.Selection.Tables[1].Cell(1, c + 1).Range.Text = DGV.Columns[c].HeaderText;
                     }
 
+
+                    //if (!File.Exists(filename))
+                    //{
+                    //    oDoc.Application.Selection.InsertRowsAbove(1);
+                    //    oDoc.Application.Selection.Tables[1].Rows[1].Select();
+                    //    //header row style
+                    //    oDoc.Application.Selection.Tables[1].Rows[1].Range.Bold = 1;
+                    //    oDoc.Application.Selection.Tables[1].Rows[1].Range.Font.Name = "Tahoma";
+                    //    oDoc.Application.Selection.Tables[1].Rows[1].Range.Font.Size = 14;
+
+                    //    //add header row manually
+                    //    for (int c = 0; c <= ColumnCount - 1; c++)
+                    //    {
+                    //        oDoc.Application.Selection.Tables[1].Cell(1, c + 1).Range.Text = DGV.Columns[c].HeaderText;
+                    //    }
+                    //}
+                    //else
+                    //{
+                    //    oDoc.Application.Selection.Tables[1].Rows[1].Select();
+                    //}
+                    
+
+
                     //table style 
                     //oDoc.Application.Selection.Tables[1].set_Style("Grid Table 4 - Accent 5");
                     oDoc.Application.Selection.Tables[1].Rows[1].Select();
                     oDoc.Application.Selection.Cells.VerticalAlignment = Word.WdCellVerticalAlignment.wdCellAlignVerticalCenter;
                     oDoc.Application.Selection.Tables[1].Borders.OutsideLineStyle = Word.WdLineStyle.wdLineStyleSingle;
                     oDoc.Application.Selection.Tables[1].Borders.InsideLineStyle = Word.WdLineStyle.wdLineStyleSingle;
+
+                    
 
                     //header text
                     foreach (Word.Section section in oDoc.Application.ActiveDocument.Sections)

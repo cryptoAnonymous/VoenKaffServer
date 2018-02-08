@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VoenKaffServer.Wrappers;
 
 namespace VoenKaffServer
 {
@@ -22,10 +23,13 @@ namespace VoenKaffServer
         SaveFileDialog sfd = new SaveFileDialog();
 
         Dictionary<string, List<DataGridViewRow>> courseAndRows;
-        List<DataGridViewColumn> listColumns;
+        Dictionary<string, string> listColumns;
         Dictionary<string, List<DataGridViewRow>> docNameAndRows;
 
-        public string _typeRes;
+        Dictionary<string, List<Result>> dicCourses;
+        Dictionary<string, List<DataGridViewRow>> docnameAndResults;
+        public string _typeRes1;
+        public string _typeRes2;
 
         public ResultsSaver(DataGridView testsTable, DataGridView studyTable)
         {
@@ -38,77 +42,99 @@ namespace VoenKaffServer
 
         public void saveAll()
         {
-            _typeRes = "Тестирование";
-            saveResults(_testsTable);
-            testsSaved = true;
-
-            _typeRes = "Обучение";
-            saveResults(_studyTable);
-            studySaved = true;
-
-            
+            saveResultsTest();
+            saveResultsStudy();
         }
 
-        public void saveResults(DataGridView dataGV)
+        public void saveResultsTest()
         {
-            
+            _typeRes1 = "Экзамен";
+            _typeRes2 = "Тестирование";
+            saveResults();
+            testsSaved = true;
+        }
+        public void saveResultsStudy()
+        {
+            _typeRes1 = "Тренировка";
+            _typeRes2 = "Обучение";
+            saveResults();
+            studySaved = true;
+        }
 
-            courseAndRows = new Dictionary<string, List<DataGridViewRow>> { };
-            listColumns = new List<DataGridViewColumn> { };
-            docNameAndRows = new Dictionary<string, List<DataGridViewRow>> { };
-            initCourseAndRows(dataGV);
+        public void saveResults()
+        {
+            listColumns = new Dictionary<string, string> { };
+            dicCourses = new Dictionary<string, List<Result>> { };
+            docnameAndResults = new Dictionary<string, List<DataGridViewRow>> { };
 
-            foreach (KeyValuePair<string, List<DataGridViewRow>> keyValue in courseAndRows)
+            foreach (Result res in ResultsData.Get())
             {
-                docNameAndRows.Clear();
-                string courseDir = _parameters.Get().ResultsPath  + @"\" + _typeRes + @"\" + keyValue.Key;
+                if (res.ResultType == _typeRes1)
+                {
+                    if (!dicCourses.ContainsKey(res.Course)) dicCourses.Add(res.Course, new List<Result> { });
+                    dicCourses[res.Course].Add(res);
+                }
+
+            }
+
+            //Коллекция для создания заголовков
+            listColumns.Add("Course", "Предмет");
+            listColumns.Add("TestName", "Название Теста");
+            listColumns.Add("Platoon", "Взвод");
+            listColumns.Add("StudentName", "ФИО");
+            listColumns.Add("Mark", "Результат");
+            listColumns.Add("Timestamp", "Дата");
+
+
+            foreach (KeyValuePair<string, List<Result>> keyValue in dicCourses)
+            {
+                docnameAndResults.Clear();
+                //Создаем папку под каждый предмет
+                string courseDir = _parameters.Get().ResultsPath + @"\" + _typeRes2 + @"\" + keyValue.Key;
                 if (!Directory.Exists(courseDir))
                 {
                     Directory.CreateDirectory(courseDir);
                 }
-                
+
+                //Создание таблицы, которую вставим в Word
                 DataGridView tempTable = new DataGridView();
-                //Заголовки
-                tempTable.Columns.Clear();
-                
-                foreach (DataGridViewColumn col in listColumns)
+
+                //Добаляем заголовочную строку таблице
+                foreach (KeyValuePair<string, string> courseNameAndText in listColumns)
                 {
                     var column = new DataGridViewColumn();
-                    column.HeaderText = col.HeaderText;
-                    column.Name = col.Name;
+                    column.HeaderText = courseNameAndText.Value;
+                    column.Name = courseNameAndText.Key;
                     column.CellTemplate = new DataGridViewTextBoxCell();
                     tempTable.Columns.Add(column);
                 }
                 
-
                 //Создание мапы <взвод - название теста> в конкретном предмете
-                foreach (DataGridViewRow row in keyValue.Value)
+                foreach (Result res in keyValue.Value)
                 {
-                    string name = row.Cells[2].Value.ToString() + "взвод. " + row.Cells[1].Value.ToString();
-                    if (!docNameAndRows.ContainsKey(name))
+                    string name = res.Platoon + "взвод. " + res.TestName;
+                    if (!docnameAndResults.ContainsKey(name))
                     {
-                        docNameAndRows.Add(name, new List<DataGridViewRow> { });
+                        docnameAndResults.Add(name, new List<DataGridViewRow> { });
                     }
+                    
 
+                    DataGridViewRow rowForInsert = new DataGridViewRow();
+                    rowForInsert.CreateCells(_testsTable);
+                    rowForInsert.Cells[0].Value = res.Course;
+                    rowForInsert.Cells[1].Value = res.TestName;
+                    rowForInsert.Cells[2].Value = res.Platoon;
+                    rowForInsert.Cells[3].Value = res.StudentName;
+                    rowForInsert.Cells[4].Value = res.Mark;
+                    rowForInsert.Cells[5].Value = res.Timestamp;
 
-                    DataGridViewRow rowForClone = new DataGridViewRow();
-                    rowForClone = (DataGridViewRow)row.Clone();
+                    
 
-                    int intColIndex = 0;
-                    foreach (DataGridViewCell cell in row.Cells)
-                    {
-                        rowForClone.Cells[intColIndex].Value = cell.Value;
-                        intColIndex++;
-                    }
-
-                    docNameAndRows[name].Add(rowForClone);
+                    docnameAndResults[name].Add(rowForInsert);
                 }
 
-               
-                
-                
                 DataTable dt = new DataTable();
-                foreach (KeyValuePair<string, List<DataGridViewRow>> keyValueDocAndRows in docNameAndRows)
+                foreach (KeyValuePair<string, List<DataGridViewRow>> keyValueDocAndRows in docnameAndResults)
                 {
                     tempTable.Rows.Clear();
                     foreach (DataGridViewRow rowTemp in keyValueDocAndRows.Value)
@@ -127,68 +153,16 @@ namespace VoenKaffServer
                     }
 
                     ws.Export_Data_To_Word(tempTable, courseDir + @"\" + keyValueDocAndRows.Key + ".doc");
-                        
+
 
                 }
 
-                
-            }
-            listColumns.Clear();
 
-            
+            }
 
         }
-
 
         
-
-        private void initCourseAndRows(DataGridView dataGV)
-        {
-
-            foreach (DataGridViewColumn col in dataGV.Columns)
-            {
-                listColumns.Add(col);
-            }
-            
-            
-            
-
-            //Коллекция предметов и результатов предметов
-            if (dataGV.Rows.Count != 0)
-            {
-                string course;
-                DataGridViewRow row = new DataGridViewRow();
-
-
-                for (int i = 0; i < dataGV.Rows.Count - 1; i++)
-                {
-                    course = dataGV.Rows[i].Cells[0].Value.ToString();
-
-
-
-                    row = (DataGridViewRow)dataGV.Rows[i].Clone();
-                    int intColIndex = 0;
-                    foreach (DataGridViewCell cell in dataGV.Rows[i].Cells)
-                    {
-                        row.Cells[intColIndex].Value = cell.Value;
-                        intColIndex++;
-                    }
-
-                    if (!courseAndRows.ContainsKey(course))
-                    {
-                        courseAndRows.Add(course, new List<DataGridViewRow> { });
-                    }
-
-                    courseAndRows[course].Add(row);
-                }
-
-
-                
-
-
-                
-            }
-        }
 
     }
 }

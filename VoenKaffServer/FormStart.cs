@@ -87,17 +87,18 @@ namespace VoenKaffServer
                     );
                     resultsSaver.studySaved = false;
                 }
+                UpdateResults();
             }
         }
 
         private void UpdateResults()
         {
-            var results = new List<Result>();
+            //var results = new List<Result>();
             foreach (DataGridViewRow row in GridResultStudy.Rows)
             {
                 if (row.Cells[2].Value != null)
                 {
-                    results.Add(new Result
+                    ResultsData.Get().Add(new Result
                     {
                         ResultType = "Тренировка",
                         Mark = row.Cells[4].Value.ToString(),
@@ -114,7 +115,7 @@ namespace VoenKaffServer
             {
                 if (row.Cells[2].Value != null)
                 {
-                    results.Add(new Result
+                    ResultsData.Get().Add(new Result
                     {
                         ResultType = "Экзамен",
                         Mark = row.Cells[4].Value.ToString(),
@@ -127,7 +128,7 @@ namespace VoenKaffServer
                 }
             }
 
-            File.WriteAllText(Resources.ResultsData, JsonConvert.SerializeObject(results));
+            File.WriteAllText(Resources.ResultsData, JsonConvert.SerializeObject(ResultsData.Get()));
         }
 
         private void GridResult_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -143,33 +144,11 @@ namespace VoenKaffServer
                 var results = JsonConvert.DeserializeObject<List<Result>>(json);
                 foreach (var result in results)
                 {
-                    if (result.ResultType == "Экзамен")
-                    {
-                        GridResultTest.Rows.Add(
-                            result.Course,
-                            result.TestName,
-                            result.Platoon,
-                            result.StudentName,
-                            result.Mark,
-                            result.Timestamp
-                        );
-
-                    }
-
-                    if (result.ResultType == "Тренировка")
-                    {
-                        GridResultStudy.Rows.Add(
-                            result.Course,
-                            result.TestName,
-                            result.Platoon,
-                            result.StudentName,
-                            result.Mark,
-                            result.Timestamp
-                        );
-                    }
+                    ResultsData.Get().Add(result);
+                    
                 }
             }
-            UpdateResults();
+            //UpdateResults();
         }
 
         private void выйтиИзАккаунтаToolStripMenuItem_Click(object sender, EventArgs e)
@@ -180,6 +159,7 @@ namespace VoenKaffServer
 
         private async void тестированиеToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            //UpdateResults();
             this.Visible = false;
 
             FormPicWhileDocsAreSaving formLoading = new FormPicWhileDocsAreSaving();
@@ -194,6 +174,7 @@ namespace VoenKaffServer
 
         private async void обучениеToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            //UpdateResults();
             this.Visible = false;
 
             FormPicWhileDocsAreSaving formLoading = new FormPicWhileDocsAreSaving();
@@ -208,16 +189,13 @@ namespace VoenKaffServer
 
         public Boolean goSaveTests()
         {
-            resultsSaver._typeRes = "Тестирование";
-            resultsSaver.saveResults(resultsSaver._testsTable);
-            resultsSaver.testsSaved = true;
+            resultsSaver.saveResultsTest();
             return true;
         }
         public Boolean goSaveStudy()
         {
-            resultsSaver._typeRes = "Обучение";
-            resultsSaver.saveResults(resultsSaver._studyTable);
-            resultsSaver.studySaved = true;
+
+            resultsSaver.saveResultsStudy();
             return true;
         }
         public async Task goSaveAll()
@@ -239,7 +217,6 @@ namespace VoenKaffServer
         {
             try
             {
-                UpdateResults();
                 saveResByClosing();
             }
             catch (Exception exception)
@@ -252,7 +229,7 @@ namespace VoenKaffServer
 
         public async void saveResByClosing()
         {
-
+            //UpdateResults();
             if (!resultsSaver.testsSaved || !resultsSaver.studySaved)
             {
 
@@ -281,6 +258,8 @@ namespace VoenKaffServer
 
         private async void скачатьВсеToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            //UpdateResults();
+
             this.Visible = false;
 
             FormPicWhileDocsAreSaving formLoading = new FormPicWhileDocsAreSaving();
