@@ -220,10 +220,20 @@ namespace VoenKaffServer
             resultsSaver.studySaved = true;
             return true;
         }
+        public async Task goSaveAll()
+        {
+            resultsSaver.saveAll();
+            await Task.Delay(1000);
+            //return true;
+        }
+        public Boolean goSaveAll2()
+        {
+            resultsSaver.saveAll();
+            return true;
+        }
 
-        
 
-        
+
 
         private  void FormStart_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -242,15 +252,48 @@ namespace VoenKaffServer
 
         public async void saveResByClosing()
         {
-            FormPicWhileDocsAreSaving formLoading = new FormPicWhileDocsAreSaving();
-            
-            formLoading.Visible = true;
-            if (await Task.Run(() => goSaveStudy()) && await Task.Run(() => goSaveTests()))
+
+            if (!resultsSaver.testsSaved || !resultsSaver.studySaved)
             {
+
+                this.Visible = false;
+                FormPicWhileDocsAreSaving formLoading = new FormPicWhileDocsAreSaving();
+
+                formLoading.Visible = true;
+
+                await goSaveAll();
                 formLoading.Visible = false;
+                Environment.Exit(0);
+                //if (await Task.Run(() => goSaveAll()))
+                //{
+                //    formLoading.Visible = false;
+                //    //this.Visible = true;
+                //    //Environment.Exit(0);
+                //}
+            }
+            else
+            {
                 Environment.Exit(0);
             }
             
+
+        }
+
+        private async void скачатьВсеToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Visible = false;
+
+            FormPicWhileDocsAreSaving formLoading = new FormPicWhileDocsAreSaving();
+            formLoading.Visible = true;
+            if (await Task.Run(() => goSaveAll2()))
+            {
+                formLoading.Visible = false;
+            }
+
+            this.Visible = true;
+
+
+
         }
     }
 }

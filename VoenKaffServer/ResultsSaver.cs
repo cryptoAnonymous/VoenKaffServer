@@ -36,6 +36,19 @@ namespace VoenKaffServer
             _parameters = new DynamicParams();
         }
 
+        public void saveAll()
+        {
+            _typeRes = "Тестирование";
+            saveResults(_testsTable);
+            testsSaved = true;
+
+            _typeRes = "Обучение";
+            saveResults(_studyTable);
+            studySaved = true;
+
+            
+        }
+
         public void saveResults(DataGridView dataGV)
         {
             
