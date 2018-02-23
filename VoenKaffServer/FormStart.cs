@@ -61,73 +61,57 @@ namespace VoenKaffServer
             }
             else
             {
-                var resultObj = JsonConvert.DeserializeObject<Result>(result);
-                if (resultObj.ResultType == "Экзамен")
+                var resultObj = JsonConvert.DeserializeObject<Result>(result);                
+                switch (resultObj.ResultType)
                 {
-                    GridResultTest.Rows.Add(
+                    case "Экзамен":
+                        {
+                            GridResultTest.Rows.Add(
+                            resultObj.Course,
+                            resultObj.TestName,
+                            resultObj.Platoon,
+                            resultObj.StudentName,
+                            resultObj.Mark,
+                            resultObj.Timestamp);
+                            resultsSaver.testsSaved = false;
+                            break;
+                        }
+                    case "Тренировка":
+                        {
+                            GridResultStudy.Rows.Add(
+                            resultObj.Course,
+                            resultObj.TestName,
+                            resultObj.Platoon,
+                            resultObj.StudentName,
+                            resultObj.Mark,
+                            resultObj.Timestamp);
+                            resultsSaver.studySaved = false;
+                            break;
+                        }
+                }              
+                UpdateResults(
                     resultObj.Course,
                     resultObj.TestName,
                     resultObj.Platoon,
                     resultObj.StudentName,
                     resultObj.Mark,
-                    resultObj.Timestamp
-                    );
-                    resultsSaver.testsSaved = false;
-                }
-
-                if (resultObj.ResultType == "Тренировка")
-                {
-                    GridResultStudy.Rows.Add(
-                    resultObj.Course,
-                    resultObj.TestName,
-                    resultObj.Platoon,
-                    resultObj.StudentName,
-                    resultObj.Mark,
-                    resultObj.Timestamp
-                    );
-                    resultsSaver.studySaved = false;
-                }
-                UpdateResults();
+                    resultObj.Timestamp,
+                    resultObj.ResultType);
             }
         }
 
-        private void UpdateResults()
+        private void UpdateResults(params object[] newRow)
         {
-            //var results = new List<Result>();
-            foreach (DataGridViewRow row in GridResultStudy.Rows)
+            ResultsData.Get().Add(new Result
             {
-                if (row.Cells[2].Value != null)
-                {
-                    ResultsData.Get().Add(new Result
-                    {
-                        ResultType = "Тренировка",
-                        Mark = row.Cells[4].Value.ToString(),
-                        Platoon = row.Cells[2].Value.ToString(),
-                        StudentName = row.Cells[3].Value.ToString(),
-                        TestName = row.Cells[1].Value.ToString(),
-                        Timestamp = DateTime.Parse(row.Cells[5].Value.ToString()),
-                        Course = row.Cells[0].Value.ToString()
-                    });
-                }
-            }
-
-            foreach (DataGridViewRow row in GridResultTest.Rows)
-            {
-                if (row.Cells[2].Value != null)
-                {
-                    ResultsData.Get().Add(new Result
-                    {
-                        ResultType = "Экзамен",
-                        Mark = row.Cells[4].Value.ToString(),
-                        Platoon = row.Cells[2].Value.ToString(),
-                        StudentName = row.Cells[3].Value.ToString(),
-                        TestName = row.Cells[1].Value.ToString(),
-                        Timestamp = DateTime.Parse(row.Cells[5].Value.ToString()),
-                        Course = row.Cells[0].Value.ToString()
-                    });
-                }
-            }
-
+                ResultType = newRow[6] as string,
+                Mark = newRow[4] as string,
+                Platoon = newRow[2] as string,
+                StudentName = newRow[3] as string,
+                TestName = newRow[1] as string,
+                Timestamp = (DateTime)newRow[5],
+                Course = newRow[0] as string
+            });
             File.WriteAllText(Resources.ResultsData, JsonConvert.SerializeObject(ResultsData.Get()));
         }
 
