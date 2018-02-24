@@ -10,5 +10,6 @@ namespace VoenKaffServer.Wrappers
     {
         public string FileName { get; set; }
         public long Length { get; set; }
+        public DateTime LastUpdate { get; set; }
     }
 }

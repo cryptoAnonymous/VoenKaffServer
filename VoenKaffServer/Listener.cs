@@ -78,7 +78,7 @@ namespace VoenKaffServer
                                 var directoryInfo = new DirectoryInfo(_parameters.Get().TestPath);
                                 foreach (var test in directoryInfo.GetFiles("*.test"))
                                 {
-                                    filenames.Add(new ObjectInfo {FileName = test.Name, Length = test.Length});
+                                    filenames.Add(new ObjectInfo {FileName = test.Name, Length = test.Length,LastUpdate = test.LastWriteTime});
                                 }
 
                                 var pictures = new DirectoryInfo(_parameters.Get().TestPath + "\\picture");
@@ -98,7 +98,6 @@ namespace VoenKaffServer
                             default:
                             {
                                 int index;
-                                var file = "";
                                 if (Int32.TryParse(response, out index))
                                 {
                                     handler.SendFile(_parameters.Get().TestPath + "\\" + filenames[index].FileName);
@@ -117,6 +116,7 @@ namespace VoenKaffServer
                     }
                     catch (Exception e)
                     {
+                        // ignored
                     }
                 }
             }

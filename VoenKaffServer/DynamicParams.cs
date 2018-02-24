@@ -20,7 +20,7 @@ namespace VoenKaffServer
         public class Settings
         {
             public string TestPath { get; set; } = "";
-            public int Port { get; set; } = 0;
+            public int Port { get; set; } = 8080;
             public string IpAdress { get; set; } = "127.0.0.1";
             public string ResultsPath { get; set; } = "";
         }
