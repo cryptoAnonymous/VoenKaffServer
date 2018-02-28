@@ -55,12 +55,11 @@ namespace VoenKaffServer
 
                         var builder = new StringBuilder();
 
-                        int bytes = 0;
-                        byte[] data = new byte[256];
+                        var data = new byte[256];
 
                         do
                         {
-                            bytes = handler.Receive(data);
+                            var bytes = handler.Receive(data);
                             builder.Append(Encoding.Unicode.GetString(data, 0, bytes));
                         } while (handler.Available > 0);
 
@@ -114,7 +113,7 @@ namespace VoenKaffServer
                         handler.Shutdown(SocketShutdown.Both);
                         handler.Close();
                     }
-                    catch (Exception e)
+                    catch (Exception)
                     {
                         // ignored
                     }

@@ -21,6 +21,7 @@ namespace VoenKaffServer
 
         FormLogin _formLogin;
         public ResultsSaver resultsSaver;
+        private PasswordResetSettings passwordReseter;
 
         public FormStart(FormLogin formLogin)
         {
@@ -257,6 +258,15 @@ namespace VoenKaffServer
 
 
 
+        }
+
+        private void сменитьПарольToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (passwordReseter is null || passwordReseter.IsDisposed)
+            {
+                passwordReseter=new PasswordResetSettings();
+            }
+            passwordReseter.Visible = true;
         }
     }
 }

@@ -30,20 +30,18 @@ namespace VoenKaffServer
                 MessageBox.Show("Пожалуйста, введите имя пользователя и пароль");
                 return;
             }
+
+            if (textBoxLogin.Text == "admin" && new DynamicParams().PwdIsValid(textBoxPassword.Text))
+            {
+                //MessageBox.Show("Login Successful!");
+                Hide();
+                _formStart.Show();
+                textBoxLogin.Text = "";
+                textBoxPassword.Text = "";
+            }
             else
             {
-                if (textBoxLogin.Text == "admin" && textBoxPassword.Text == "admin")
-                {
-                    //MessageBox.Show("Login Successful!");
-                    this.Hide();
-                    _formStart.Show();
-                    textBoxLogin.Text = "";
-                    textBoxPassword.Text = "";
-                }
-                else
-                {
-                    MessageBox.Show("Имя пользователя или пароль введены неверно. \nПовторите ввод снова");
-                }
+                MessageBox.Show("Имя пользователя или пароль введены неверно. \nПовторите ввод снова");
             }
         }
 
