@@ -20,6 +20,7 @@ namespace VoenKaffServer
         private readonly DynamicParams _parameters;
         private readonly Thread _thread;
         private readonly FormStart _form;
+        private bool _editable;
 
         public Listener(FormStart form)
         {
@@ -73,6 +74,11 @@ namespace VoenKaffServer
                             }
                             case "Update":
                             {
+                                if (_editable)
+                                {
+                                    handler.Send(Encoding.Unicode.GetBytes("Occupied"));
+                                }
+                                _editable = true;
                                 filenames.Clear();
                                 var directoryInfo = new DirectoryInfo(_parameters.Get().TestPath);
                                 foreach (var test in directoryInfo.GetFiles("*.test"))
@@ -103,6 +109,11 @@ namespace VoenKaffServer
                                 }
                                 else
                                 {
+                                    if (response == "Close")
+                                    {
+                                        _editable = false;
+                                        break;
+                                    }
                                     _form.AddResult(builder.ToString());
                                 }
 
