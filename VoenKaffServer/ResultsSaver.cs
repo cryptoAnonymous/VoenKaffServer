@@ -69,11 +69,9 @@ namespace VoenKaffServer
 
             foreach (Result res in ResultsData.Get())
             {
-                if (res.ResultType == _typeRes1)
-                {
-                    if (!dicCourses.ContainsKey(res.Course)) dicCourses.Add(res.Course, new List<Result> { });
-                    dicCourses[res.Course].Add(res);
-                }
+                if (res.ResultType != _typeRes1) continue;
+                if (!dicCourses.ContainsKey(res.Course)) dicCourses.Add(res.Course, new List<Result> { });
+                dicCourses[res.Course].Add(res);
 
             }
 
@@ -89,8 +87,11 @@ namespace VoenKaffServer
             foreach (KeyValuePair<string, List<Result>> keyValue in dicCourses)
             {
                 docnameAndResults.Clear();
+                var wrongSymbols = "/\\<>:?\"|*";
                 //Создаем папку под каждый предмет
-                string courseDir = _parameters.Get().ResultsPath + @"\" + _typeRes2 + @"\" + keyValue.Key;
+                string courseDir = _parameters.Get().ResultsPath + @"\" + new string(_typeRes2.Where(c => !wrongSymbols.Contains(c)).ToArray()) + @"\" + new string(keyValue.Key.Where(c => !wrongSymbols.Contains(c)).ToArray());
+
+                
                 if (!Directory.Exists(courseDir))
                 {
                     Directory.CreateDirectory(courseDir);
@@ -102,10 +103,12 @@ namespace VoenKaffServer
                 //Добаляем заголовочную строку таблице
                 foreach (KeyValuePair<string, string> courseNameAndText in listColumns)
                 {
-                    var column = new DataGridViewColumn();
-                    column.HeaderText = courseNameAndText.Value;
-                    column.Name = courseNameAndText.Key;
-                    column.CellTemplate = new DataGridViewTextBoxCell();
+                    var column = new DataGridViewColumn
+                    {
+                        HeaderText = courseNameAndText.Value,
+                        Name = courseNameAndText.Key,
+                        CellTemplate = new DataGridViewTextBoxCell()
+                    };
                     tempTable.Columns.Add(column);
                 }
                 
@@ -133,8 +136,7 @@ namespace VoenKaffServer
                     docnameAndResults[name].Add(rowForInsert);
                 }
 
-                DataTable dt = new DataTable();
-                foreach (KeyValuePair<string, List<DataGridViewRow>> keyValueDocAndRows in docnameAndResults)
+                foreach (var keyValueDocAndRows in docnameAndResults)
                 {
                     tempTable.Rows.Clear();
                     foreach (DataGridViewRow rowTemp in keyValueDocAndRows.Value)
@@ -152,17 +154,10 @@ namespace VoenKaffServer
                         tempTable.Rows.Add(rowForInsert);
                     }
 
-                    ws.Export_Data_To_Word(tempTable, courseDir + @"\" + keyValueDocAndRows.Key + ".doc");
-
-
+                    ws.Export_Data_To_Word(tempTable, courseDir + @"\" + new string(keyValueDocAndRows.Key.Where(c => !wrongSymbols.Contains(c)).ToArray()) + ".doc");
                 }
-
-
             }
 
         }
-
-        
-
     }
 }

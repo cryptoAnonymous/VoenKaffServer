@@ -217,21 +217,11 @@ namespace VoenKaffServer
             //UpdateResults();
             if (!resultsSaver.testsSaved || !resultsSaver.studySaved)
             {
-
-                this.Visible = false;
-                FormPicWhileDocsAreSaving formLoading = new FormPicWhileDocsAreSaving();
-
-                formLoading.Visible = true;
-
+                Visible = false;
+                var formLoading = new FormPicWhileDocsAreSaving {Visible = true};
                 await goSaveAll();
                 formLoading.Visible = false;
                 Environment.Exit(0);
-                //if (await Task.Run(() => goSaveAll()))
-                //{
-                //    formLoading.Visible = false;
-                //    //this.Visible = true;
-                //    //Environment.Exit(0);
-                //}
             }
             else
             {
