@@ -27,6 +27,9 @@ namespace VoenKaffServer
                     dynamicParams.SetPwd(NewPassword.Text);
                     MessageBox.Show("Новый пароль сохранен", "Новый пароль сохранен", MessageBoxButtons.OK,
                         MessageBoxIcon.Information);
+                    NewPassowrdRepeater.Text = "";
+                    NewPassword.Text = "";
+                    OldPassword.Text = "";
                     Visible = false;
                 }
                 else

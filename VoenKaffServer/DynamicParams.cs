@@ -87,20 +87,22 @@ namespace VoenKaffServer
 
         public void SetPwd(string value)
         {
-            try
-            {
+            
                 var iniFile = ReadFile();
                 iniFile.Pwd = HashPassword(value);
                 using (var stream = new FileStream(Path, FileMode.Create))
                 {
-                    var serializer = new XmlSerializer(typeof(Settings));
-                    serializer.Serialize(stream, iniFile);
+                    try
+                    {
+                        var serializer = new XmlSerializer(typeof(Settings));
+                        serializer.Serialize(stream, iniFile);
+                    }
+                    catch (Exception)
+                    {
+                        // ignored
+                    }
                 }
-            }
-            catch (Exception)
-            {
-                // ignored
-            }
+            
         }
 
         public bool PwdIsValid(string pwd)
@@ -133,20 +135,21 @@ namespace VoenKaffServer
 
         public void SetPort(int value)
         {
-            try
-            {
                 var iniFile = ReadFile();
                 iniFile.Port = value;
                 using (var stream = new FileStream(Path, FileMode.Create))
                 {
-                    XmlSerializer serializer = new XmlSerializer(typeof(Settings));
-                    serializer.Serialize(stream, iniFile);
-                }
+                    try
+                    {
+                        XmlSerializer serializer = new XmlSerializer(typeof(Settings));
+                        serializer.Serialize(stream, iniFile);
+                    }
+                    catch (Exception)
+                    {
+                        // ignored
+                    }
             }
-            catch (Exception)
-            {
-                // ignored
-            }
+            
         }
 
     }
