@@ -149,7 +149,7 @@ namespace VoenKaffServer
 
             FormPicWhileDocsAreSaving formLoading = new FormPicWhileDocsAreSaving();
             formLoading.Visible = true;
-            if (await Task.Run(() => goSaveTests()))
+            if (await TaskEx.Run(() => goSaveTests()))
             {
                 formLoading.Visible = false;
             }
@@ -164,7 +164,7 @@ namespace VoenKaffServer
 
             FormPicWhileDocsAreSaving formLoading = new FormPicWhileDocsAreSaving();
             formLoading.Visible = true;
-            if (await Task.Run(() => goSaveStudy()))
+            if (await TaskEx.Run(() => goSaveStudy()))
             {
                 formLoading.Visible = false;
             }
@@ -186,7 +186,7 @@ namespace VoenKaffServer
         public async Task goSaveAll()
         {
             resultsSaver.saveAll();
-            await Task.Delay(1000);
+            await TaskEx.Delay(1000);
             //return true;
         }
         public Boolean goSaveAll2()
@@ -239,7 +239,7 @@ namespace VoenKaffServer
 
             FormPicWhileDocsAreSaving formLoading = new FormPicWhileDocsAreSaving();
             formLoading.Visible = true;
-            if (await Task.Run(() => goSaveAll2()))
+            if (await TaskEx.Run(() => goSaveAll2()))
             {
                 formLoading.Visible = false;
             }
