@@ -258,5 +258,68 @@ namespace VoenKaffServer
             }
             passwordReseter.Visible = true;
         }
+
+        private void сохранитьРезультатыИТестыНаФлешкуToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var parameters = new DynamicParams();
+            foreach (var drive in GetDrives())
+            {
+                var path = drive + "Результаты тестирования";
+                CopyDir(parameters.Get().ResultsPath,path);
+            }
+            MessageBox.Show("Файлы с результатами успешно сохранены", "Успешно сохранено", MessageBoxButtons.OK);
+        }
+
+        private void CopyDir(string FromDir, string ToDir)
+        {
+            Directory.CreateDirectory(ToDir);
+            foreach (string s1 in Directory.GetFiles(FromDir))
+            {
+                string s2 = ToDir + "\\" + Path.GetFileName(s1);
+                if (!File.Exists(s2))
+                {
+                    File.Copy(s1, s2);
+                }
+            }
+            foreach (string s in Directory.GetDirectories(FromDir))
+            {
+                CopyDir(s, ToDir + "\\" + Path.GetFileName(s));
+            }
+        }
+
+        private IEnumerable<string> GetDrives()
+        {
+            return DriveInfo.GetDrives().Where(p => p.DriveType == DriveType.Removable).Select(p => p.Name);
+        }
+
+        private void сохранитьТестыНаФлешкуToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var parameters = new DynamicParams();
+            foreach (var drive in GetDrives())
+            {
+                var path = drive + "Тесты";
+                CopyDir(parameters.Get().TestPath, path);
+            }
+            MessageBox.Show("Файлы с тестами успешно сохранены", "Успешно сохранено", MessageBoxButtons.OK);
+        }
+
+        private void загрузитьТестыСФлешкиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var parameters = new DynamicParams();
+            var exists = false;
+            foreach (var drive in GetDrives())
+            {
+                var path = drive + "Тесты";
+                if (Directory.Exists(path))
+                {
+                    CopyDir(path,parameters.Get().TestPath);
+                    exists = true;
+                }
+            }
+
+            MessageBox.Show(exists ? "Файлы тестов успешно загружены" : "Не удалось найти тесты на флешке",
+                "Результат загрузки", MessageBoxButtons.OK,
+                exists ? MessageBoxIcon.Information : MessageBoxIcon.Warning);
+        }
     }
 }

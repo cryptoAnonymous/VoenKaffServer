@@ -35,6 +35,7 @@
             this.тестированиеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.обучениеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.скачатьВсеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.сменитьПарольToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.GridResultTest = new System.Windows.Forms.DataGridView();
             this.Course = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TestName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -52,7 +53,10 @@
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.сменитьПарольToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.работаСФлешкойToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.сохранитьРезультатыИТестыНаФлешкуToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.сохранитьТестыНаФлешкуToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.загрузитьТестыСФлешкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridResultTest)).BeginInit();
             this.tabControlTest.SuspendLayout();
@@ -68,7 +72,8 @@
             this.настройкиToolStripMenuItem,
             this.выйтиИзАккаунтаToolStripMenuItem,
             this.скачатьДокументToolStripMenuItem,
-            this.сменитьПарольToolStripMenuItem});
+            this.сменитьПарольToolStripMenuItem,
+            this.работаСФлешкойToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
             this.menuStrip.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
@@ -121,6 +126,13 @@
             this.скачатьВсеToolStripMenuItem.Size = new System.Drawing.Size(182, 26);
             this.скачатьВсеToolStripMenuItem.Text = "Скачать все";
             this.скачатьВсеToolStripMenuItem.Click += new System.EventHandler(this.скачатьВсеToolStripMenuItem_Click);
+            // 
+            // сменитьПарольToolStripMenuItem
+            // 
+            this.сменитьПарольToolStripMenuItem.Name = "сменитьПарольToolStripMenuItem";
+            this.сменитьПарольToolStripMenuItem.Size = new System.Drawing.Size(136, 24);
+            this.сменитьПарольToolStripMenuItem.Text = "Сменить пароль";
+            this.сменитьПарольToolStripMenuItem.Click += new System.EventHandler(this.сменитьПарольToolStripMenuItem_Click);
             // 
             // GridResultTest
             // 
@@ -202,7 +214,7 @@
             this.tabControlTest.Controls.Add(this.tabPageTest);
             this.tabControlTest.Controls.Add(this.tabPage2);
             this.tabControlTest.Location = new System.Drawing.Point(16, 33);
-            this.tabControlTest.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabControlTest.Margin = new System.Windows.Forms.Padding(4);
             this.tabControlTest.Name = "tabControlTest";
             this.tabControlTest.SelectedIndex = 0;
             this.tabControlTest.Size = new System.Drawing.Size(1203, 639);
@@ -212,9 +224,9 @@
             // 
             this.tabPageTest.Controls.Add(this.GridResultTest);
             this.tabPageTest.Location = new System.Drawing.Point(4, 25);
-            this.tabPageTest.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageTest.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageTest.Name = "tabPageTest";
-            this.tabPageTest.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageTest.Padding = new System.Windows.Forms.Padding(4);
             this.tabPageTest.Size = new System.Drawing.Size(1195, 610);
             this.tabPageTest.TabIndex = 0;
             this.tabPageTest.Text = "Тестирование";
@@ -224,9 +236,9 @@
             // 
             this.tabPage2.Controls.Add(this.GridResultStudy);
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(4);
             this.tabPage2.Size = new System.Drawing.Size(1195, 610);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Обучение";
@@ -306,12 +318,36 @@
             this.dataGridViewTextBoxColumn6.ReadOnly = true;
             this.dataGridViewTextBoxColumn6.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
-            // сменитьПарольToolStripMenuItem
+            // работаСФлешкойToolStripMenuItem
             // 
-            this.сменитьПарольToolStripMenuItem.Name = "сменитьПарольToolStripMenuItem";
-            this.сменитьПарольToolStripMenuItem.Size = new System.Drawing.Size(136, 24);
-            this.сменитьПарольToolStripMenuItem.Text = "Сменить пароль";
-            this.сменитьПарольToolStripMenuItem.Click += new System.EventHandler(this.сменитьПарольToolStripMenuItem_Click);
+            this.работаСФлешкойToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.сохранитьРезультатыИТестыНаФлешкуToolStripMenuItem,
+            this.сохранитьТестыНаФлешкуToolStripMenuItem,
+            this.загрузитьТестыСФлешкиToolStripMenuItem});
+            this.работаСФлешкойToolStripMenuItem.Name = "работаСФлешкойToolStripMenuItem";
+            this.работаСФлешкойToolStripMenuItem.Size = new System.Drawing.Size(147, 24);
+            this.работаСФлешкойToolStripMenuItem.Text = "Работа с флешкой";
+            // 
+            // сохранитьРезультатыИТестыНаФлешкуToolStripMenuItem
+            // 
+            this.сохранитьРезультатыИТестыНаФлешкуToolStripMenuItem.Name = "сохранитьРезультатыИТестыНаФлешкуToolStripMenuItem";
+            this.сохранитьРезультатыИТестыНаФлешкуToolStripMenuItem.Size = new System.Drawing.Size(317, 26);
+            this.сохранитьРезультатыИТестыНаФлешкуToolStripMenuItem.Text = "Сохранить результаты на флешку";
+            this.сохранитьРезультатыИТестыНаФлешкуToolStripMenuItem.Click += new System.EventHandler(this.сохранитьРезультатыИТестыНаФлешкуToolStripMenuItem_Click);
+            // 
+            // сохранитьТестыНаФлешкуToolStripMenuItem
+            // 
+            this.сохранитьТестыНаФлешкуToolStripMenuItem.Name = "сохранитьТестыНаФлешкуToolStripMenuItem";
+            this.сохранитьТестыНаФлешкуToolStripMenuItem.Size = new System.Drawing.Size(317, 26);
+            this.сохранитьТестыНаФлешкуToolStripMenuItem.Text = "Сохранить тесты на флешку";
+            this.сохранитьТестыНаФлешкуToolStripMenuItem.Click += new System.EventHandler(this.сохранитьТестыНаФлешкуToolStripMenuItem_Click);
+            // 
+            // загрузитьТестыСФлешкиToolStripMenuItem
+            // 
+            this.загрузитьТестыСФлешкиToolStripMenuItem.Name = "загрузитьТестыСФлешкиToolStripMenuItem";
+            this.загрузитьТестыСФлешкиToolStripMenuItem.Size = new System.Drawing.Size(317, 26);
+            this.загрузитьТестыСФлешкиToolStripMenuItem.Text = "Загрузить тесты с флешки";
+            this.загрузитьТестыСФлешкиToolStripMenuItem.Click += new System.EventHandler(this.загрузитьТестыСФлешкиToolStripMenuItem_Click);
             // 
             // FormStart
             // 
@@ -363,6 +399,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private System.Windows.Forms.ToolStripMenuItem скачатьВсеToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem сменитьПарольToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem работаСФлешкойToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem сохранитьРезультатыИТестыНаФлешкуToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem сохранитьТестыНаФлешкуToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem загрузитьТестыСФлешкиToolStripMenuItem;
     }
 }
 
