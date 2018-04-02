@@ -110,7 +110,7 @@ namespace VoenKaffServer
             try
             {
                 var pass = ReadFile().Pwd;
-                if (pass is null && pwd == "admin")
+                if (pass == null && pwd == "admin")
                 {
                     SetPwd("admin");
                     return true;

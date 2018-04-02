@@ -97,6 +97,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DynamicParams.cs" />
+    <Compile Include="FormDeleteResults.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDeleteResults.Designer.cs">
+      <DependentUpon>FormDeleteResults.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormInputPassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormInputPassword.Designer.cs">
+      <DependentUpon>FormInputPassword.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormPicWhileDocsAreSaving.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -135,6 +147,12 @@
     <Compile Include="WordSaver.cs" />
     <Compile Include="Wrappers\ObjectInfo.cs" />
     <Compile Include="Wrappers\Result.cs" />
+    <EmbeddedResource Include="FormDeleteResults.resx">
+      <DependentUpon>FormDeleteResults.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormInputPassword.resx">
+      <DependentUpon>FormInputPassword.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormPicWhileDocsAreSaving.resx">
       <DependentUpon>FormPicWhileDocsAreSaving.cs</DependentUpon>
     </EmbeddedResource>

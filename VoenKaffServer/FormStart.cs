@@ -252,7 +252,7 @@ namespace VoenKaffServer
 
         private void сменитьПарольToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (passwordReseter is null || passwordReseter.IsDisposed)
+            if (passwordReseter == null || passwordReseter.IsDisposed)
             {
                 passwordReseter=new PasswordResetSettings();
             }
@@ -320,6 +320,13 @@ namespace VoenKaffServer
             MessageBox.Show(exists ? "Файлы тестов успешно загружены" : "Не удалось найти тесты на флешке",
                 "Результат загрузки", MessageBoxButtons.OK,
                 exists ? MessageBoxIcon.Information : MessageBoxIcon.Warning);
+        }
+
+        private void удалениеРезультатовToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormDeleteResults fdr = new FormDeleteResults();
+            //this.Visible = false;
+            fdr.Visible = true;
         }
     }
 }
