@@ -359,13 +359,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = global::VoenKaffServer.Properties.Resources._57fd50a598d16157b58306fa;
             this.ClientSize = new System.Drawing.Size(930, 558);
             this.Controls.Add(this.tabControlTest);
             this.Controls.Add(this.menuStrip);
             this.MainMenuStrip = this.menuStrip;
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FormStart";
-            this.Text = "Сервер тестирования";
+            this.Text = "Сервер тестирования (v1.0 от 08.2018)";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormStart_FormClosing);
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
